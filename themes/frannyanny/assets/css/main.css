@@ -1,13 +1,49 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
+/* @plugin "@tailwindcss/typography"; */
 @source "hugo_stats.json";
 
 @import "components/header.css";
 @import "components/footer.css";
 
+
+@font-face {
+  font-family: 'fraunces';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Fraunces_72pt-Regular.ttf')
+    format('truetype');
+}
+
+
+@font-face {
+  font-family: 'fraunces-black';
+  font-style: normal;
+  font-weight: black;
+  src: url('/fonts/Fraunces_72pt-Black.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: 'caprasimo';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/Caprasimo-Regular.ttf')
+    format('truetype');
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'fraunces-black';
+  font-style: normal;
+}
+
+
 body {
-  color: #222;
-  font-family: sans-serif;
+  color: #4f838c;
+  font-family: 'fraunces';
   line-height: 1.5;
   margin: 1rem;
   max-width: 768px;
