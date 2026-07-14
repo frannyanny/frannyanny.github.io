@@ -1,9 +1,11 @@
 {{ define "main" }}
   {{ .Content }}
-  {{ range site.RegularPages }}
+  {{ with .Site.GetPage "/gallery" }}
+  {{ range .Pages }} 
     <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
+      <h1><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h1>
+      {{ partial "masonry.html" . }}
     </section>
+    {{ end }}
   {{ end }}
 {{ end }}

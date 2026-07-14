@@ -5,15 +5,15 @@ theme = 'frannyanny'
 
 
 [menus]
-  [[menus.main]]
-    name = 'Home'
-    pageRef = '/'
-    weight = 10
+ # [[menus.main]]
+ #   name = 'Home'
+ #   pageRef = '/'
+ #   weight = 10
 
-  [[menus.main]]
-    name = 'Gallery'
-    pageRef = '/gallery'
-    weight = 20
+ # [[menus.main]]
+  #  name = 'Gallery'
+  #  pageRef = '/gallery'
+  #  weight = 20
 
   [[menus.main]]
     name = 'About'

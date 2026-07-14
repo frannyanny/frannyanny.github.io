@@ -1,0 +1,11 @@
+<div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 p-4 [column-fill:_balance] box-border before:box-border after:box-border">
+    <div>
+        {{ range .Resources.ByType "image"}}
+        <img class="object-cover object-center rounded-lg"
+          src="{{ .RelPermalink }}"
+          alt="{{ .Title }}"
+        />
+        {{ end }}
+    </div>
+</div>
+  

@@ -3,7 +3,9 @@
   {{ range .Pages }}
     <section>
       <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
+        <masonry>
+            {{ partial "masonry.html" . }}
+        </masonry>
     </section>
   {{ end }}
 {{ end }}
