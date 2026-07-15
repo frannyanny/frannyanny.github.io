@@ -11,7 +11,7 @@
       "header",
       "html",
       "img",
-      "li",
+      "intro",
       "link",
       "main",
       "masonry",
@@ -20,12 +20,10 @@
       "p",
       "script",
       "section",
-      "title",
-      "ul"
+      "title"
     ],
     "classes": [
       "[column-fill:_balance]",
-      "active",
       "after:box-border",
       "before:box-border",
       "box-border",
@@ -40,8 +38,8 @@
       "lg:flex-1",
       "lg:gap-x-12",
       "lg:px-8",
+      "max-w-1/2",
       "max-w-7xl",
-      "max-w-fit",
       "md:columns-3",
       "mx-auto",
       "object-center",
@@ -50,6 +48,7 @@
       "p-6",
       "rounded-lg",
       "sm:columns-2",
+      "text-2xl",
       "text-6xl",
       "text-center"
     ],

@@ -1,9 +1,12 @@
 {{ define "main" }}
-  {{ .Content }}
+
+  <intro class="text-2xl text-center max-w-1/2 p-6">
+    {{ .Content }}
+  </intro>
+
   {{ with .Site.GetPage "/gallery" }}
   {{ range .Pages }} 
     <section>
-      <h1><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h1>
       {{ partial "masonry.html" . }}
     </section>
     {{ end }}

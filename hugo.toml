@@ -15,10 +15,10 @@ theme = 'frannyanny'
   #  pageRef = '/gallery'
   #  weight = 20
 
-  [[menus.main]]
-    name = 'About'
-    pageRef = '/about'
-    weight = 30
+#  [[menus.main]]
+#    name = 'About'
+#    pageRef = '/about'
+#    weight = 30
 
 
 # Tailwind CSS
