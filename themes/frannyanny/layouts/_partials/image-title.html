@@ -1,0 +1,36 @@
+{{- /*
+Returns a display title for an image resource.
+
+1. A title set in the section's front matter wins, e.g.
+     [[resources]]
+       src = "pamuseet.jpg"
+       title = "Pamuseet, 2023"
+2. Otherwise files named like "FrancescaWatsonArt_TheManInBlue_2018_web.jpeg"
+   become "The Man In Blue, 2018".
+3. Anything else gets no title.
+
+@context {resource} . An image resource.
+*/}}
+{{- $title := "" }}
+{{- if ne .Title .Name }}
+  {{- $title = .Title }}
+{{- else }}
+  {{- $base := path.Base .Name }}
+  {{- $name := strings.TrimSuffix (path.Ext $base) $base }}
+  {{- if findRE `^Frances?c?aWatsonArt_` $name }}
+    {{- $words := slice }}
+    {{- $year := "" }}
+    {{- range after 1 (split $name "_") }}
+      {{- if findRE `^(19|20)\d\d$` . }}
+        {{- $year = . }}
+      {{- else if ne (lower .) "web" }}
+        {{- $words = $words | append . }}
+      {{- end }}
+    {{- end }}
+    {{- $title = delimit $words " " | replaceRE `([a-z])([A-Z0-9])` "$1 $2" }}
+    {{- with $year }}
+      {{- $title = printf "%s, %s" $title . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- return $title }}

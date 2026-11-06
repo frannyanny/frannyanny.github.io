@@ -1,14 +1,10 @@
 {{ define "main" }}
-
-  <intro class="text-2xl text-center max-w-1/2 p-6">
-    {{ .Content }}
-  </intro>
-
-  {{ with .Site.GetPage "/gallery" }}
-  {{ range .Pages }} 
-    <section>
-      {{ partial "masonry.html" . }}
-    </section>
+  <h1 class="visually-hidden">{{ site.Title }}</h1>
+  <div class="home-galleries">
+  {{ with site.GetPage "/gallery" }}
+    {{ range .Pages }}
+      {{ partial "gallery-section.html" (dict "page" . "limit" 8) }}
     {{ end }}
   {{ end }}
+  </div>
 {{ end }}

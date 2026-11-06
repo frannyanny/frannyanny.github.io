@@ -1,15 +1,25 @@
-<nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-    
-    <!-- Logo on the Left -->
-    <div class="flex lg:flex-1">
-    <h1 class="text-6xl"><a href="/"  >
-        Fran Watson Art
-    </a></h1>
-    </div>
+{{- $current := . }}
+<header class="site-header">
+  <a class="site-brand" href="{{ site.Home.RelPermalink }}">
+    {{- with resources.Get "FW_logo.png" }}
+      {{- $logo := .Resize "195x webp q90" }}
+      <img class="site-logo" src="{{ $logo.RelPermalink }}" width="96" height="96" alt="">
+    {{- end }}
+    <span class="site-title">{{ site.Title }}</span>
+  </a>
 
-    <!-- Menu Items on the Right -->
-    <div class="hidden lg:flex lg:gap-x-12">
-    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-    </div>
-    
-</nav>
+  <nav class="site-nav" aria-label="Main">
+    <ul>
+      {{- with site.GetPage "/gallery" }}
+        {{- range .Pages }}
+          <li><a href="{{ .RelPermalink }}"{{ if eq $current.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
+        {{- end }}
+      {{- end }}
+      {{- with site.GetPage "/about" }}
+        {{- if not .Draft }}
+          <li><a href="{{ .RelPermalink }}"{{ if eq $current.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
+        {{- end }}
+      {{- end }}
+    </ul>
+  </nav>
+</header>

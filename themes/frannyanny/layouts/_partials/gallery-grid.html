@@ -1,0 +1,32 @@
+{{- /*
+Renders a section's images as a justified-row gallery that opens in the lightbox.
+
+@context {page} page  The gallery section whose images to show.
+@context {int}  limit Optional. Show only the first N images. The rest are still
+                      added as hidden links, so the lightbox can step through the
+                      whole gallery without loading their thumbnails.
+*/}}
+{{- $page := .page }}
+{{- $limit := .limit | default 0 }}
+<div class="gallery" data-gallery>
+  {{- range $i, $res := $page.Resources.ByType "image" }}
+    {{- $title := partial "image-title.html" $res }}
+    {{- /* Apply the camera/scanner rotation flag so sideways files show the right way up. */}}
+    {{- $img := $res.Filter images.AutoOrient }}
+    {{- $large := $img.Fit "2200x2200 webp q85" }}
+    {{- $alt := $title | default (printf "%s by %s" $page.Title site.Title) }}
+    {{- if and $limit (ge $i $limit) }}
+    <a class="gallery-item" href="{{ $large.RelPermalink }}" hidden data-alt="{{ $alt }}"
+       {{- with $title }} data-caption="{{ . }}"{{ end }}></a>
+    {{- else }}
+    {{- $thumb := $img.Fit "1200x640 webp q80" }}
+    <a class="gallery-item" href="{{ $large.RelPermalink }}"
+       style="{{ printf "--ar: %.4f" (div (float $img.Width) $img.Height) | safeCSS }}"
+       {{- with $title }} data-caption="{{ . }}"{{ end }}>
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}"
+           alt="{{ $alt }}" loading="lazy" decoding="async">
+      {{- with $title }}<span class="gallery-caption">{{ . }}</span>{{ end }}
+    </a>
+    {{- end }}
+  {{- end }}
+</div>

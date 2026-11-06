@@ -1,5 +1,16 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{- with or .Description site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+<meta name="theme-color" content="#ffcc00">
+{{- with resources.Get "FW_logo.png" }}
+<link rel="icon" type="image/png" href="{{ (.Resize "64x png").RelPermalink }}">
+<link rel="apple-touch-icon" href="{{ (.Resize "180x png").RelPermalink }}">
+{{- end }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Prata&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap">
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}

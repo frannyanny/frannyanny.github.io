@@ -1,11 +1,9 @@
 {{ define "main" }}
-  {{ .Content }}
+  <div class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+  </div>
+  {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
   {{ range .Pages }}
-    <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-        <masonry>
-            {{ partial "masonry.html" . }}
-        </masonry>
-    </section>
+    {{ partial "gallery-section.html" (dict "page" . "limit" 8) }}
   {{ end }}
 {{ end }}

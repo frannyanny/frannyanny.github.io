@@ -1,7 +1,11 @@
 baseURL = '/'
 locale = 'en-uk'
-title = 'Frannyannys portfolio site'
+title = 'Fran Watson Art'
 theme = 'frannyanny'
+
+[params]
+  description = 'Analogue photography, painting, drawing and printmaking by Francesca Watson.'
+  instagram = 'francescawatson.art'
 
 
 [menus]

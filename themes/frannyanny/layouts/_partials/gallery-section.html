@@ -1,0 +1,13 @@
+{{- /*
+One gallery category as a preview block: heading, a few images and a link to the full set.
+
+@context {page} page  The gallery section.
+@context {int}  limit How many images to preview.
+*/}}
+<section class="gallery-section">
+  <div class="gallery-section-header">
+    <h2 class="gallery-section-title"><a href="{{ .page.RelPermalink }}">{{ .page.LinkTitle }}</a></h2>
+    <a class="view-all" href="{{ .page.RelPermalink }}">View all <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  {{ partial "gallery-grid.html" (dict "page" .page "limit" .limit) }}
+</section>
